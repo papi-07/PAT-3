@@ -1,0 +1,26 @@
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.eggs/
+dist/
+build/
+*.so
+.env
+.venv/
+venv/
+.idea/
+.vscode/
+*.ipynb_checkpoints
+
+# Generated data (large files)
+data/synthetic_patients.csv
+data/cgm_series.npy
+
+# Generated results (plots)
+results/*.png
+results/*.pdf
+results/*.csv
+
+# Keep the gitkeep
+!results/.gitkeep
