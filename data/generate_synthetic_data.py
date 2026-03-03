@@ -267,10 +267,11 @@ def generate_synthetic_dataset(
 
     # Balanced class sampling: equal thirds for Ready / Borderline / Not-Ready
     n_per_class = n_patients // 3
-    class_sequence = (
+    class_sequence = np.array(
         [cfg.CLASS_READY]      * n_per_class
         + [cfg.CLASS_BORDERLINE] * n_per_class
-        + [cfg.CLASS_NOT_READY]  * (n_patients - 2 * n_per_class)
+        + [cfg.CLASS_NOT_READY]  * (n_patients - 2 * n_per_class),
+        dtype=int,
     )
     rng.shuffle(class_sequence)
 

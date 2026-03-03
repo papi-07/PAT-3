@@ -336,9 +336,9 @@ def main():
     # Assemble results dict for metrics
     n_tr = int(cfg.TRAIN_SPLIT * n_use)
     results = {
-        # Module 1 – proxy: GV score vs. instability label
+        # Module 1 – GV proxy: normalised CV% as instability proxy vs. true binary label
         "m1_y_true": (labels[:n_use] == cfg.CLASS_NOT_READY).astype(float),
-        "m1_y_pred": _norm01(gv_feats[:, :5].mean(axis=1)),   # stat GV proxy
+        "m1_y_pred": _norm01(df.iloc[:n_use]["cv_pct"].values.astype(float)),
 
         # Module 2 – tissue XGBoost vs. true label
         "m2_y_true": labels[:n_use],

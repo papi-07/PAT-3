@@ -204,16 +204,20 @@ class BayesianAdaptiveThreshold:
         """
         Bayesian update given an observed HRI score and clinical outcome.
 
+        Uses standard Beta-Binomial conjugate update:
+          α += 1  when outcome = 1 (healing observed)
+          β += 1  when outcome = 0 (non-healing observed)
+
         Parameters
         ----------
-        hri_score : float in [0, 1]
+        hri_score : float in [0, 1]  (stored for convergence tracking)
         outcome   : 1 = healing (positive), 0 = non-healing (negative)
         """
         self.history.append(self.threshold)
         if outcome == 1:
-            self.alpha += hri_score
+            self.alpha += 1
         else:
-            self.beta += (1 - hri_score)
+            self.beta += 1
 
     def batch_update(self, hri_scores: np.ndarray, outcomes: np.ndarray):
         """Update threshold over a batch of observations."""

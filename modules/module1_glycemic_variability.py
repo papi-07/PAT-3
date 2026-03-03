@@ -323,7 +323,9 @@ def train_gv_models(
 
             # CNN
             opt_cnn.zero_grad()
-            pred_cnn = cnn_model(xb).mean(dim=1, keepdim=True)
+            cnn_features = cnn_model(xb)       # (batch, out_features)
+            # Use mean of features as a scalar prediction (proxy for instability)
+            pred_cnn = torch.sigmoid(cnn_features.mean(dim=1, keepdim=True))
             loss_cnn = criterion(pred_cnn, yb)
             loss_cnn.backward()
             opt_cnn.step()

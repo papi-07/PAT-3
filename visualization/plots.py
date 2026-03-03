@@ -104,7 +104,12 @@ def plot_clarke_error_grid(
     ax.plot([0, 175, 400], [0, 175 * 1.20, 400 * 1.20], "g-", lw=0.8, alpha=0.6)
     ax.plot([0, 175, 400], [0, 175 * 0.80, 400 * 0.80], "g-", lw=0.8, alpha=0.6)
 
-    ax.fill_between([0, 400], [0, 400 * 1.20], [0, 400 * 1.20], alpha=0.05, color="green")
+    ax.fill_between(
+        [0, 400],
+        [0, 400 * 0.80],
+        [0, 400 * 1.20],
+        alpha=0.05, color="green",
+    )
 
     ax.text(30, 370, "Zone A", fontsize=10, color="green")
     ax.text(30, 310, "Zone B", fontsize=9, color="orange")

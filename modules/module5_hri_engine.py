@@ -112,7 +112,8 @@ class HRIClassifier(nn.Module):
         h       = self.net(x)
         logits  = self.head(h)
         proba   = self.softmax(logits)
-        # HRI score: probability of "Ready" class (index 0)
+        # HRI score: probability of "Ready" class (index CLASS_READY=0).
+        # Higher score → more likely the patient is healing-ready.
         hri_score = proba[:, 0]
         return logits, proba, hri_score
 

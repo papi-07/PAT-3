@@ -44,11 +44,6 @@ PARAM_RANGES = {
 # ─────────────────────────────────────────────────────────────
 # HRI label criteria
 # ─────────────────────────────────────────────────────────────
-HRI_LABELS = {
-    "READY":      1,
-    "BORDERLINE": 0,   # stored as int 1 in 3-class (0-based mapping below)
-    "NOT_READY":  2,
-}
 # 3-class integer mapping used throughout the code
 CLASS_READY      = 0
 CLASS_BORDERLINE = 1

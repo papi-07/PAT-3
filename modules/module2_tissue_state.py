@@ -146,7 +146,15 @@ def fuzzy_tissue_score_batch(
 
     scores = []
     cols = ["crp", "spo2", "temperature", "moisture_index", "perfusion_index"]
-    for row in (df_tissue[cols].values if hasattr(df_tissue, "values") else df_tissue):
+    if hasattr(df_tissue, "to_numpy"):
+        # DataFrame – select columns explicitly
+        rows = df_tissue[cols].to_numpy()
+    elif hasattr(df_tissue, "__getitem__") and not isinstance(df_tissue, np.ndarray):
+        import pandas as pd
+        rows = pd.DataFrame(df_tissue)[cols].to_numpy()
+    else:
+        rows = np.asarray(df_tissue)
+    for row in rows:
         scores.append(fuzzy_tissue_score(*row, sim=sim))
     return np.array(scores, dtype=np.float32)
 
